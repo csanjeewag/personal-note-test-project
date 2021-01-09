@@ -20,12 +20,12 @@
 						},
 						{
 							"key": "titile",
-							"value": "my contacts",
+							"value": "my pet",
 							"type": "text"
 						},
 						{
 							"key": "text",
-							"value": "chanaka sanjeewa gunasekara",
+							"value": "It is a dog, I really love it.....",
 							"type": "text"
 						},
 						{
@@ -106,7 +106,13 @@
 			"name": "get text files by users Id (not archive)",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8000/api/v1/note/unarchive/1",
 					"protocol": "http",
@@ -130,9 +136,15 @@
 			"name": "get text files by users Id (archive)",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/note/archive/1",
+					"raw": "http://localhost:8000/api/v1/note/unarchive/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -142,7 +154,7 @@
 						"api",
 						"v1",
 						"note",
-						"archive",
+						"unarchive",
 						"1"
 					]
 				},
@@ -154,9 +166,15 @@
 			"name": "get text in the not archive files",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/note/5ff9576ef510ce034cabbe0e",
+					"raw": "http://localhost:8000/api/v1/note/5ff98f7d4763dd3758915aa1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -166,7 +184,7 @@
 						"api",
 						"v1",
 						"note",
-						"5ff9576ef510ce034cabbe0e"
+						"5ff98f7d4763dd3758915aa1"
 					]
 				},
 				"description": "send text content of text file and other details regading note"
@@ -177,9 +195,15 @@
 			"name": "change a text file to archive by note Id",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/note/toArchive/5ff8d770d152682be8269720",
+					"raw": "http://localhost:8000/api/v1/note/toArchive/5ff98240fb6f904188d31542",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -190,7 +214,7 @@
 						"v1",
 						"note",
 						"toArchive",
-						"5ff8d770d152682be8269720"
+						"5ff98240fb6f904188d31542"
 					]
 				},
 				"description": "convert text file in local storage to the zip (archive) file, and update database"
@@ -201,9 +225,15 @@
 			"name": "change a archive file to text by note Id",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/note/tounArchive/5ff8d770d152682be8269720",
+					"raw": "http://localhost:8000/api/v1/note/tounArchive/5ff98240fb6f904188d31542",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -214,7 +244,7 @@
 						"v1",
 						"note",
 						"tounArchive",
-						"5ff8d770d152682be8269720"
+						"5ff98240fb6f904188d31542"
 					]
 				},
 				"description": "convert text file in local storage to the zip (archive) file, and update database"
@@ -225,15 +255,20 @@
 			"name": "update text or titile in not archive file by note id",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "titile",
 							"value": "",
-							"type": "text",
-							"disabled": true
+							"type": "text"
 						},
 						{
 							"key": "text",
@@ -248,7 +283,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/note/update/5ff8d770d152682be8269720",
+					"raw": "http://localhost:8000/api/v1/note/update/5ff98240fb6f904188d31542",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -259,7 +294,7 @@
 						"v1",
 						"note",
 						"update",
-						"5ff8d770d152682be8269720"
+						"5ff98240fb6f904188d31542"
 					]
 				},
 				"description": "update text in the txt file in local storage, or update titile. it is only can update in not archive files."
@@ -270,7 +305,13 @@
 			"name": "Delete a note by note Id",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8000/api/v1/note/delete/5ff95554f510ce034cabbe0d",
 					"protocol": "http",
@@ -294,7 +335,13 @@
 			"name": "Delete a note by note Id (archive)",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "1",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8000/api/v1/note/delete/5ff95554f510ce034cabbe0d",
 					"protocol": "http",

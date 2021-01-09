@@ -1,15 +1,17 @@
 module.exports.ERROR_MSG = {  
     
     
-    ADD_MSG             :       "There is some mistake, check again",
-    ARCHIVE_MSG         :       "Not found id or invalid",
-    UNARCHIVE_MSG       :       "Not found id or invalid",
-    GET_MSG             :       "Not found id or invalid",
-    DELETE_MSG          :       "Delete is not complete",
-    UPDATE_MSG          :       "Update is not complete",
-    UPDATE_MSG_2        :       "Your file is archive file, can not modify",
-    TO_ARCHIVE_MSG      :       "converting archive is not complete",
-    TO_UNARCHIVE_MSG    :       "converting unarchive is not complete",
+    ADD_MSG             :       "The file has not been added, check again.",
+    ARCHIVE_MSG         :       "Invalid user id.",
+    UNARCHIVE_MSG       :       "Invalid user id.",
+    GET_MSG             :       "Invalid user id.",
+    DELETE_MSG          :       "The file has not been deleted.",
+    UPDATE_MSG          :       "The file has not been updated.",
+    UPDATE_MSG_2        :       "The file is archived, cannot be modified.",
+    TO_ARCHIVE_MSG      :       "The file has not been archived, check again.",
+    TO_UNARCHIVE_MSG    :       "The file has not been unarchived, check again.",
+
+    TO_UNAUTH_USER      :       "unauthorized user"
 
 
   };
@@ -18,14 +20,14 @@ module.exports.ERROR_MSG = {
   module.exports.SUCCESS_MSG = {  
     
     
-    ADD_MSG             :       "success adding.",
-    ARCHIVE_MSG         :       "you are giving archive files",
-    UNARCHIVE_MSG       :       "you are giving unarchive text files",
-    GET_MSG             :       "there are information of note",
-    DELETE_MSG          :       "Delete is complete",
-    UPDATE_MSG          :       "Update is complete",
-    TO_ARCHIVE_MSG      :       "converting archive is complete",
-    TO_UNARCHIVE_MSG    :       "converting unarchive is complete",
+    ADD_MSG             :       "Success, create a new note.",
+    ARCHIVE_MSG         :       "The archived list has been obtained.",
+    UNARCHIVE_MSG       :       "The unarchived list has been obtained.",
+    GET_MSG             :       "The content has been obtanied.",
+    DELETE_MSG          :       "Succesfully deleted.",
+    UPDATE_MSG          :       "Succesfully updated.",
+    TO_ARCHIVE_MSG      :       "Conversion to archived format is success.",
+    TO_UNARCHIVE_MSG    :       "Conversion to unarchived format is success.",
 
 
   };

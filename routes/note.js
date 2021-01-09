@@ -57,7 +57,7 @@ router.post('/add', function (req, res, next) {
     });
 
     note.save(function (err, result) {
-        if (err) return res.status(500).json({ err: err });
+        if (err) return res.status(500).json({ error: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.ADD_MSG });
 
         if (result) {
             return res.status(200).json({ status: CONST.STATUS_MSG.SUCCUSS, message: CONST.SUCCESS_MSG.ADD_MSG });
@@ -95,7 +95,12 @@ router.post('/add', function (req, res, next) {
  *       "message": "`note id is invalid"
  *     }
  */
-router.get('/archive/:id', function (req, res, next) {
+router.get('/archive/:id',AUTH, function (req, res, next) {
+
+    //check access token is valid
+    if(req.userId!=req.params.id){
+        return res.status(400).json({ error: CONST.STATUS_MSG.NOTFOUND, message: CONST.ERROR_MSG.TO_UNAUTH_USER }); 
+    }
 
     var findUserQuery = { userId: req.params.id , isArchive:true };
 
@@ -106,6 +111,9 @@ router.get('/archive/:id', function (req, res, next) {
         } else {
             return res.status(400).json({ error: CONST.STATUS_MSG.NOTFOUND, message: CONST.ERROR_MSG.ARCHIVE_MSG });
         }
+    })
+    .catch((err)=>{
+        return res.status(400).json({ error: CONST.STATUS_MSG.NOTFOUND, message: CONST.ERROR_MSG.ARCHIVE_MSG });
     })
 });
 
@@ -135,7 +143,12 @@ router.get('/archive/:id', function (req, res, next) {
  *       "message": "`note id is invalid"
  *     }
  */
-router.get('/unArchive/:id', function (req, res, next) {
+router.get('/unArchive/:id',AUTH, function (req, res, next) {
+
+    //check access token is valid
+    if(req.userId!=req.params.id){
+        return res.status(400).json({ error: CONST.STATUS_MSG.NOTFOUND, message: CONST.ERROR_MSG.TO_UNAUTH_USER }); 
+    }
 
     var findUserQuery = { userId: req.params.id , isArchive:false };
 
@@ -146,6 +159,9 @@ router.get('/unArchive/:id', function (req, res, next) {
         } else {
             return res.status(400).json({ error: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.UNARCHIVE_MSG });
         }
+    })
+    .catch((err)=>{
+        return res.status(400).json({ error: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.UNARCHIVE_MSG });
     })
 });
 
@@ -176,12 +192,13 @@ router.get('/unArchive/:id', function (req, res, next) {
  *       "message": "`note id is invalid"
  *     }
  */
-router.get('/:id', function (req, res, next) {
+router.get('/:id',AUTH, function (req, res, next) {
 
+    const userId = req.userId; // from the token
         
     NOTE.findById(req.params.id).then(result => {
 
-        if (result && (!result.isArchive)) {
+        if (result && (!result.isArchive) && userId ==result.userId) {
 
             const read_detail = FILESYSTEM.readfile(result.fileName);
         
@@ -192,6 +209,9 @@ router.get('/:id', function (req, res, next) {
             
             return res.status(400).json({ error: CONST.STATUS_MSG.ERROR , message: CONST.ERROR_MSG.GET_MSG });
         }
+    })
+    .catch((err)=>{
+        return res.status(400).json({ error: CONST.STATUS_MSG.ERROR , message: CONST.ERROR_MSG.GET_MSG });
     })
 });
 
@@ -223,10 +243,12 @@ router.get('/:id', function (req, res, next) {
  *       "message": "deletaion not complete"
  *     }
  */
-router.delete('/delete/:id', function (req, res, next) {
+router.delete('/delete/:id',AUTH, function (req, res, next) {
 
-   
-    NOTE.findByIdAndDelete(req.params.id)
+    //check access token is valid
+    const userId =req.userId;
+  
+    NOTE.findOneAndDelete({_id:req.params.id, userId:userId})
         .then((del_item) => {
 
             FILESYSTEM.remove_file(del_item.fileName);
@@ -268,11 +290,12 @@ router.delete('/delete/:id', function (req, res, next) {
  *       "message": "convert is not complete"
  *     }
  */
-router.put('/toArchive/:id', function (req, res, next) {
+router.put('/toArchive/:id',AUTH, function (req, res, next) {
 
+    //check access token is valid
+    const userId =req.userId;
 
-
-    NOTE.findById(req.params.id)
+    NOTE.findOne({_id:req.params.id,userId:userId})
     .then((pre)=>{
         if(pre.isArchive){
             return res.status(400).json({ status: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.TO_ARCHIVE_MSG});
@@ -293,6 +316,10 @@ router.put('/toArchive/:id', function (req, res, next) {
             })
 
         }
+    })
+    .catch(err => {
+        return res.status(400).json({ status: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.TO_ARCHIVE_MSG});
+
     })
 
 });
@@ -324,11 +351,13 @@ router.put('/toArchive/:id', function (req, res, next) {
  *       "message": "convert is not complete"
  *     }
  */
-router.put('/tounArchive/:id', function (req, res, next) {
+router.put('/tounArchive/:id',AUTH, function (req, res, next) {
 
 
+  //check access token is valid
+  const userId =req.userId;
 
-    NOTE.findById(req.params.id)
+  NOTE.findOne({_id:req.params.id,userId:userId})
     .then((pre)=>{
         if(!pre.isArchive){
             return res.status(400).json({ status: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.TO_UNARCHIVE_MSG });
@@ -349,6 +378,9 @@ router.put('/tounArchive/:id', function (req, res, next) {
             })
 
         }
+    }).catch(err => {
+        return res.status(400).json({ status: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.TO_UNARCHIVE_MSG });
+
     })
 
 });
@@ -380,11 +412,13 @@ router.put('/tounArchive/:id', function (req, res, next) {
  *       "message": "update is not complete"
  *     }
  */
-router.put('/update/:id', function (req, res, next) {
+router.put('/update/:id',AUTH, function (req, res, next) {
 
     const body = req.body;
+  //check access token is valid
+  const userId =req.userId;
 
-    NOTE.findById(req.params.id)
+  NOTE.findOne({_id:req.params.id,userId:userId})
     .then((pre)=>{
         if(pre.isArchive){
             return res.status(400).json({ status: CONST.STATUS_MSG.ERROR, message: CONST.ERROR_MSG.UPDATE_MSG_2  });
