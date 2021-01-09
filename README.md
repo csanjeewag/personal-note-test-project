@@ -33,8 +33,8 @@ Server start : http://localhost:8000
 
 ## Project description ##
 
-The text file can be altered and saved back in an archived or non-archived state
 This is a REST API based project developed in NodeJs to manage personal notes. The content is saved in .txt files. The content is not stored in the Database. And the text files are saved in the server whereas the other details such as user ID, file name, title, and created time. Based on user preference the user can save the file in a.txt file format or .zip archive file format. The text can be retrieved in two ways which are if it’s an archived file it can be retrieved in archived format and if the content is saved in a text file it can be retrieved in the same file format. The content in the text file can be modified and saved back either as an archived file or a text file.  
+ 
 
 ## Assumptions ##
 
@@ -43,7 +43,7 @@ This is a REST API based project developed in NodeJs to manage personal notes. T
 3. The list of archived files or non-archived files can be obtained based on user ID.
 4. The text in a non-archived file can be 
 5. In a non-archived file, the text can be edited 
-6. To authenticate should be send user Id with header as an 'access-token' regarding notes or a note. Then only access to update, delete and read.
+6.  To authenticate user Id must be sent in the header as an 'access-token'. Then only access will be provided to update, delete, and read.
 
 
 
@@ -227,7 +227,7 @@ http://localhost:8000/api/v1/note/delete/5ff95554f510ce034cabbe0d
 }
 ```
 
-# technologies
+# Technologies
 
 * node.js , cloud mongo db (atlas)
 
