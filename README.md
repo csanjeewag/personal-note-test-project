@@ -1,20 +1,19 @@
-# Test Resources #
+# Personal note rest API #
 
-This project is for testing project given in Thirdfort
 
 ### Pre Requirements ###
 
 1. NodeJs v12.x.x higher version 
 2. MongoDB 5.x.x higher version
 
-### How do I get set up? ###
+## Contents ##
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Node module install
+* Start Project
+* Project description
+* Assumptions
+* APIS
+* Technologies
 
 ### How To Start Project ###
 
@@ -47,7 +46,7 @@ This is a REST API based project developed in NodeJs to manage personal notes. T
 
 
 
-# APIS
+# APIs
 
 ## API postman samples
 
@@ -198,7 +197,7 @@ http://localhost:8000/api/v1/note/update/5ff98240fb6f904188d31542
 ```node
 {
     "status": "success",
-    "message": "Succesfully updated."
+    "message": "Successfully updated."
 }
 ```
 * response at failure

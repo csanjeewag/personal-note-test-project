@@ -24,8 +24,8 @@ module.exports.ERROR_MSG = {
     ARCHIVE_MSG         :       "The archived list has been obtained.",
     UNARCHIVE_MSG       :       "The unarchived list has been obtained.",
     GET_MSG             :       "The content has been obtanied.",
-    DELETE_MSG          :       "Succesfully deleted.",
-    UPDATE_MSG          :       "Succesfully updated.",
+    DELETE_MSG          :       "Successfully deleted.",
+    UPDATE_MSG          :       "Successfully updated.",
     TO_ARCHIVE_MSG      :       "Conversion to archived format is success.",
     TO_UNARCHIVE_MSG    :       "Conversion to unarchived format is success.",
 

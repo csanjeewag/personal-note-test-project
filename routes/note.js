@@ -21,16 +21,17 @@ var CONST = require("./../connstants/noteConstants");
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "message": "The file has not been added, check again.."
  *        "data" : data
  *     }
  *
- * @apiError error adding not complete 
+ * @apiError error file has not been added, 
  * 
  * @apiErrorExample Error-Response:
  *     Error 400 Bad Request
  *     {
  *       "error": "error",
- *       "message": " adding not complete"
+ *       "message": " The file has not been added, check again."
  *     }
  */
 router.post('/add', function (req, res, next) {
@@ -83,6 +84,7 @@ router.post('/add', function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "massage": "The archived list has been obtained.",
  *        "data" : data
  *     }
  *
@@ -92,7 +94,7 @@ router.post('/add', function (req, res, next) {
  *     Error 400 Bad Request
  *     {
  *       "error": "NotFound",
- *       "message": "`note id is invalid"
+ *       "message": "Invalid user id."
  *     }
  */
 router.get('/archive/:id',AUTH, function (req, res, next) {
@@ -131,6 +133,7 @@ router.get('/archive/:id',AUTH, function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "massage": "The unarchived list has been obtained.",
  *        "data" : data
  *     }
  *
@@ -140,7 +143,7 @@ router.get('/archive/:id',AUTH, function (req, res, next) {
  *     Error 400 Bad Request
  *     {
  *       "error": "NotFound",
- *       "message": "`note id is invalid"
+ *       "message": "Invalid user id."
  *     }
  */
 router.get('/unArchive/:id',AUTH, function (req, res, next) {
@@ -180,6 +183,7 @@ router.get('/unArchive/:id',AUTH, function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "massage" : "The content has been obtained",
  *        "data" : data
  *     }
  *
@@ -231,7 +235,7 @@ router.get('/:id',AUTH, function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
- *        "data" : data
+ *        "massage" : "Succesfully deleted."
  *     }
  *
  * @apiError UserNotFound `Id` is required 
@@ -240,7 +244,7 @@ router.get('/:id',AUTH, function (req, res, next) {
  *     Error 400 Bad Request
  *     {
  *       "error": "NotFound",
- *       "message": "deletaion not complete"
+ *       "message": "The file has not been deleted."
  *     }
  */
 router.delete('/delete/:id',AUTH, function (req, res, next) {
@@ -278,6 +282,7 @@ router.delete('/delete/:id',AUTH, function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "massage":"Conversion to archived format is success.",
  *        "data" : data
  *     }
  *
@@ -287,7 +292,7 @@ router.delete('/delete/:id',AUTH, function (req, res, next) {
  *     Error 400 Bad Request
  *     {
  *       "error": "NotFound",
- *       "message": "convert is not complete"
+ *       "message": "The file has not been archived, check again"
  *     }
  */
 router.put('/toArchive/:id',AUTH, function (req, res, next) {
@@ -339,6 +344,7 @@ router.put('/toArchive/:id',AUTH, function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "massage" : "Conversion to archived format is success.",
  *        "data" : data
  *     }
  *
@@ -348,7 +354,7 @@ router.put('/toArchive/:id',AUTH, function (req, res, next) {
  *     Error 400 Bad Request
  *     {
  *       "error": "NotFound",
- *       "message": "convert is not complete"
+ *       "message": "The file has not been unarchived, check again"
  *     }
  */
 router.put('/tounArchive/:id',AUTH, function (req, res, next) {
@@ -400,6 +406,7 @@ router.put('/tounArchive/:id',AUTH, function (req, res, next) {
  * @apiSuccessExample {json} Success-Response:   
  *     {
  *        "status": "success",
+ *         "massage": "The file has not been updated.",
  *        "data" : data
  *     }
  *
