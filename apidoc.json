@@ -1,0 +1,11 @@
+{
+  "name": " API DOC",
+  "version": "1.0.0",
+  "description": " API Documentation",
+  "apidoc": {
+    "title": "TEST PROJECT DOC",
+    "url" : ""
+    
+  },
+  "sampleUrl" : ""
+}

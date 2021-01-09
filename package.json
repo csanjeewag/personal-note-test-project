@@ -1,0 +1,29 @@
+{
+  "name": "zepto-resources",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "doc": "mkdir -p apidoc && apidoc -i ./routes/ -o ./apidoc/"
+  },
+  "dependencies": {
+    "@mongoosejs/double": "^0.2.0",
+    "archiver": "^5.2.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-fileupload": "^1.2.0",
+    "extract-zip": "^2.0.1",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.16",
+    "morgan": "~1.9.0",
+    "nodemon": "^2.0.7",
+    "randomstring": "^1.1.5",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
+  }
+}
